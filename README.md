@@ -1,42 +1,45 @@
 # CrossHONA
 
-Cross-species single-cell integration with a hierarchical staged trainer,
-wrapped behind a local-LLM agent + Gradio web UI. Everything runs locally —
-no data or prompts leave the host.
+CrossHONA is a deep learning framework for cross-species single-cell RNA-seq and spatial transcriptomics integration and cell type annotation. The model jointly incorporates homologous and non-homologous genes within a unified latent embedding space to capture both conserved and species-specific biological signals.
 
-## What's in this repo
+## Repository Structure
 
-- **`CrossHONA/`** — the training code: a 4-stage VAE-based
-  cross-species integration pipeline (`staged_trainer.py`, `datasets.py`,
-  `run_*.sh`).
-- **`CrossHONA-Agent/`** — a Gradio web app and a tool-calling agent
-  (`api.py`, `agent.py`, `app.py`, `tools/`) that drive preprocessing,
-  training, monitoring, and visualization through chat or form input.
-- **`SETUP_AGENT.md`** — full setup and usage guide (conda-based). Start there.
-- **`CrossHONA-Agent/DOCKER.md`** — alternative containerized setup.
+- `CrossHONA/`
+  - Core model implementation and training pipeline
+  - Includes staged training scripts, dataset loaders, and preprocessing utilities
 
-## Quick start
+- `CrossHONA-Agent/`
+  - Optional Gradio-based interface and utility scripts for experiment management and visualization
+  - See `CrossHONA-Agent/DOCKER.md` for the containerized deployment alternative
+
+- `SETUP_AGENT.md`
+  - Full setup, daily start-up, troubleshooting, and example chat-tab session for the agent + web UI
+
+- `environment.yml`
+  - Conda environment specification
+
+## Installation
 
 ```bash
-git clone https://github.com/<org>/CrossHONA.git
+git clone https://github.com/anonreview412/CrossHONA.git
 cd CrossHONA
-export REPO_ROOT=$PWD
+
 conda env create -f environment.yml
 conda activate crossspecies
 ```
+## Usage
+Example training scripts are provided in:
 
-Then follow [SETUP_AGENT.md](SETUP_AGENT.md) for Ollama install, staging
-data, and launching the web app. No datasets are bundled with the
-repository — see §4 for how to bring your own. The MERFISH human ↔ mouse
-demo (referenced in §8 and §9) runs in ~3 minutes on a single GPU once the
-data is staged.
+```bash
+CrossHONA/run_*.sh
+```
+Users should prepare their own datasets following the preprocessing procedure described in the manuscript. Before running, edit codedir, datadir, resultdir placeholders to point at your local paths.
 
 ## Requirements
-
-- Linux workstation or single-GPU node on an HPC cluster
-- One CUDA-capable GPU
-- ~10 GB free on a data volume for the LLM weights
-- Conda / Miniforge
+- Linux
+- Python 3.10
+- CUDA-enabled GPU
+- Conda or Miniforge
 
 ## License
 
