@@ -1,0 +1,39 @@
+name: crossspecies
+channels:
+  - pytorch
+  - nvidia
+  - pyg
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+
+  - pytorch=2.1.*
+  - pytorch-cuda=12.1
+  - pyg=2.5.*
+  - pytorch-scatter
+  - pytorch-sparse
+  - pytorch-cluster
+
+  - scanpy
+  - anndata
+  - numpy<2
+  - pandas
+  - scipy
+  - scikit-learn
+  - scikit-misc
+  - matplotlib
+  - seaborn
+  - tqdm
+  - pyyaml
+
+  - pip:
+      - gradio>=4.0
+      - openai>=1.30
+      - python-multipart
+      - httpx             # gradio runtime dep, sometimes shadowed by user-site
+      - anyio
+      - fastapi
+      - uvicorn
+      - scib              # single-cell integration metrics; not on conda
+      - umap-learn        # nicer than the PCA fallback in plot_umap

@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.env
+.venv/
+venv/
+
+# Logs and runtime artifacts
+*.log
+ollama.tgz
+ollama.log
+app.log
+
+# Agent outputs — do not commit
+CrossHONA-Agent/results/
+
+# User data — never commit. Keep the directory itself via .gitkeep.
+CrossHONA-Agent/data/*
+!CrossHONA-Agent/data/.gitkeep
+
+# Large model artifacts and intermediate tensors
+*.pt
+*.pkl
+*.npy
+*.npz
+*.ckpt
+
+# Plots (regenerated on demand)
+*.png
+*.pdf
+*.svg
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

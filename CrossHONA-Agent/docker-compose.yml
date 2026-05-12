@@ -1,0 +1,53 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: crossspecies_ollama
+    # Keep LLM offline once the model is pulled.
+    # If you need to pull a new model, temporarily comment `internal: true` below.
+    volumes:
+      - ollama_models:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    networks:
+      - internal
+
+  app:
+    build: .
+    container_name: crossspecies_app
+    depends_on:
+      - ollama
+    ports:
+      # Bind ONLY to localhost — never expose to LAN/WAN.
+      - "127.0.0.1:7860:7860"
+    volumes:
+      # Read-only inputs, read/write results, code mounted live for easy updates.
+      - ./data:/app/data
+      - ./results:/app/results
+      - ../scripts_hierarchical:/app/scripts_hierarchical:ro
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434/v1
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.1:8b}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
+    # `internal: true` would block ALL outbound — turn on after first model pull.
+
+volumes:
+  ollama_models:
