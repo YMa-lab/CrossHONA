@@ -1,6 +1,8 @@
 # CrossHONA
 
-![CrossHONA overview](figures/CrossHONA.png)
+<p align="center">
+  <img src="figures/CrossHONA.png" alt="CrossHONA overview" width="900">
+</p>
 
 CrossHONA is a deep learning framework for cross-species single-cell RNA-seq and spatial transcriptomics integration and cell type annotation. The model jointly incorporates homologous and non-homologous genes within a unified latent embedding space to capture both conserved and species-specific biological signals.
 
