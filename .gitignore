@@ -32,10 +32,12 @@ CrossHONA-Agent/data/*
 *.npz
 *.ckpt
 
-# Plots (regenerated on demand)
+# Plots (regenerated on demand) — but allow committed docs figures
 *.png
 *.pdf
 *.svg
+!figures/
+!figures/**
 
 # OS / editor
 .DS_Store
