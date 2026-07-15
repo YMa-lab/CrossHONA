@@ -29,7 +29,6 @@ from torch.utils.data import DataLoader, TensorDataset
 import models
 
 from utils.plotting import plot_stage_results, plot_confusion_matrices
-from utils.scib_metrics import compute_scib_metrics
 from utils.basic_metrics import compute_basic_metrics
 
 warnings.filterwarnings("ignore")
@@ -330,24 +329,14 @@ class StagedTrainer:
             condition=True,
         )
 
-        scib_metrics = None
-
         print(f"  Ref Acc: {metrics['accuracy_ref']:.4f}, Tgt Acc: {metrics['accuracy_tgt']:.4f}")
-        print(f"  Ref Weighted F1: {metrics['weightedF1_ref']:.4f}, Tgt Weighted F1: {metrics['weightedF1_tgt']:.4f}")
+        # print(f"  Ref Weighted F1: {metrics['weightedF1_ref']:.4f}, Tgt Weighted F1: {metrics['weightedF1_tgt']:.4f}")
         print(f"  Ref ARI: {metrics['ari_ref']:.4f}, Tgt ARI: {metrics['ari_tgt']:.4f}")
-        print(f"  Ref NMI: {metrics['nmi_ref']:.4f}, Tgt NMI: {metrics['nmi_tgt']:.4f}")
-        if "accuracy_tgt_logreg" in metrics:
-            print(f"  [LogReg]      Tgt Acc: {metrics['accuracy_tgt_logreg']:.4f},"
-                  f" BalAcc: {metrics['bal_accuracy_tgt_logreg']:.4f},"
-                  f" ARI: {metrics['ari_tgt_logreg']:.4f}")
-        if "accuracy_tgt_logreg_bal" in metrics:
-            print(f"  [LogReg-bal]  Tgt Acc: {metrics['accuracy_tgt_logreg_bal']:.4f},"
-                  f" BalAcc: {metrics['bal_accuracy_tgt_logreg_bal']:.4f},"
-                  f" ARI: {metrics['ari_tgt_logreg_bal']:.4f}")
-        print(f"  Silhouette (homo): {metrics['silhouette_homo_mean']:.4f}")
-        print(f"  Silhouette (full): {metrics['silhouette_full']:.4f}")
+        # print(f"  Ref NMI: {metrics['nmi_ref']:.4f}, Tgt NMI: {metrics['nmi_tgt']:.4f}")
+        # print(f"  Silhouette (homo): {metrics['silhouette_homo_mean']:.4f}")
+        # print(f"  Silhouette (full): {metrics['silhouette_full']:.4f}")
 
-        return losses, embeddings, metrics, scib_metrics
+        return losses, embeddings, metrics
 
     def train(self):
         optimizer        = optim.AdamW(self.model.parameters(), lr=self.args.lr)
@@ -360,7 +349,7 @@ class StagedTrainer:
             stage_dir  = os.path.join(self.args.savedir, stage_name)
             os.makedirs(stage_dir, exist_ok=True)
 
-            losses, embeddings, metrics, scib_metrics = self.train_stage(
+            losses, embeddings, metrics = self.train_stage(
                 stage_config, epochs_per_stage, optimizer
             )
 
@@ -377,12 +366,11 @@ class StagedTrainer:
                 json.dump(losses, f)
 
             all_results[stage_name] = {"losses": losses, "metrics": metrics}
-            # Confusion matrices are cheap — render every stage so we can
-            # watch which cell types come online as alignment kicks in.
-            plot_confusion_matrices(embeddings, stage_dir, stage_name,
-                                    inv_ref=self.inv_ref, inv_tgt=self.inv_tgt)
+
+            # plot_confusion_matrices(embeddings, stage_dir, stage_name,
+            #                         inv_ref=self.inv_ref, inv_tgt=self.inv_tgt)
             if stage_name == 'Stage3_BridgedFull':
-                plot_stage_results(stage_name, embeddings, losses, metrics, scib_metrics, stage_dir, True, self.inv_ref, self.inv_tgt)
+                plot_stage_results(stage_name, embeddings, losses, stage_dir, True, self.inv_ref, self.inv_tgt)
             torch.save(self.model.state_dict(), os.path.join(stage_dir, "model_checkpoint.pt"))
 
         with open(os.path.join(self.args.savedir, "all_stage_metrics.json"), "w") as f:

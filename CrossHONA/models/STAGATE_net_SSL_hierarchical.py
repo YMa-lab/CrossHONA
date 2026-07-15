@@ -1,12 +1,10 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import List, Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple
 from .loss_hierarchical import (
     log_nb_positive,
     HierarchicalAlignmentLoss,
-    intra_species_alignment_loss,
-    bridged_full_alignment,
     proto_contrastive_loss,
 )
 
@@ -44,8 +42,10 @@ class MLP(nn.Module):
 
 
 class MLPEncoder(nn.Module):
-    """MLP encoder. Optional FiLM modulation by a (gamma, beta) pair injected
-    after the linear layer, before activation."""
+    """
+    MLP encoder. Optional FiLM modulation by a (gamma, beta) pair injected
+    after the linear layer, before activation.
+    """
     def __init__(self, in_dim: int, hidden_dim: int, heads: int = 1):
         super().__init__()
         self.linear = nn.Linear(in_dim, hidden_dim)
@@ -76,21 +76,8 @@ class MLPLatentHead(nn.Module):
 
 
 class MLPDecoder(nn.Module):
-    """MLP decoder. Outputs NB(mu, theta) parameters.
-
-    If `library_size` is provided, decoder predicts the gene-fraction simplex
-    (softmax) and multiplies by the per-cell library size to get mu — this is
-    the scVI parameterisation. The encoder is then free of the library-size
-    nuisance signal.
-
-    If `library_size` is None, falls back to the legacy softplus(logits) form
-    where the decoder predicts absolute counts directly.
-
-    `n_theta_groups` controls how many independent dispersion vectors are
-    stored. n=1 (default) is the legacy single-group; n=2 lets ref/tgt have
-    distinct per-gene dispersions (selected at forward time via `theta_idx`).
-    Only relevant for the homo decoder, which is shared across species; the
-    nonhomo decoders are already species-specific and can leave n=1.
+    """
+    MLP decoder. Outputs NB(mu, theta) parameters.
     """
     def __init__(
         self,
@@ -169,18 +156,10 @@ class cross_GAE_VAE_Hierarchical(nn.Module):
     ):
         super().__init__()
 
-        # Training-time input perturbation: Gaussian noise on the input.
-        # Acts as a regulariser that "lifts" the zero entries (>80% of the
-        # input in sparse count data), forcing the encoder away from
-        # memorising ref-specific sparse patterns. Crucial for cross-species
-        # generalisation since target zero-patterns differ from ref.
         self.denoise = denoise
         self.noise_std = noise_std if denoise else 0.0
         self.cls_on = cls_on
         self.use_nonhomo = use_nonhomo
-
-        # The model is always: scVI-style size-factor decoder + FiLM species
-        # conditioning. The 1-dim concat-indicator pathway has been removed.
         self.homo_x_dim = shared_x_dim
         self.shared_x_dim = shared_x_dim
         self.ref_x_dim = ref_x_dim
@@ -188,10 +167,6 @@ class cross_GAE_VAE_Hierarchical(nn.Module):
         self.latent_dim = latent_dim
 
         # ====== Encoders / Decoders ======
-        # Homo decoder is shared across species but holds two dispersion
-        # vectors (theta_idx=0 -> ref, theta_idx=1 -> tgt) so per-species
-        # NB dispersion can be honest about each platform's noise level.
-        # Always uses scVI-style size-factor decoder.
         self.homo_enc = MLPEncoder(self.homo_x_dim, hidden_dim)
         self.homo_decoder = MLPDecoder(latent_dim, hidden_dim, shared_x_dim, n_theta_groups=2)
 
@@ -207,10 +182,6 @@ class cross_GAE_VAE_Hierarchical(nn.Module):
             self.tgt_nonhomo_decoder = None
 
         # ====== Species conditioning via FiLM ======
-        # 2 species, embedded into film_emb_dim. Two separate (gamma, beta)
-        # generators: one for the encoder pathway, one for the decoder.
-        # gamma is parameterised as 1 + g(emb) so that at init g≈0 -> γ≈1,
-        # making FiLM an identity transform until training picks up signal.
         self.species_emb = nn.Embedding(2, film_emb_dim)
         self.film_enc_gamma = nn.Linear(film_emb_dim, hidden_dim)
         self.film_enc_beta  = nn.Linear(film_emb_dim, hidden_dim)
@@ -222,21 +193,13 @@ class cross_GAE_VAE_Hierarchical(nn.Module):
             nn.init.zeros_(layer.bias)
 
         # ====== Latent Heads ======
-        # homo_latent is SHARED across species — both ref and target homo
-        # features pass through the same weights, which anchors them in the
-        # same latent geometry and supports cross-species alignment.
         self.homo_latent = MLPLatentHead(hidden_dim, latent_dim)
 
-        # nonhomo heads are SPECIES-SPECIFIC — ref and target nonhomo genes
-        # are entirely different gene sets with different distributions, so
-        # forcing them through shared weights is unnecessarily constraining.
         if self.use_nonhomo:
             self.ref_nonhomo_latent = MLPLatentHead(hidden_dim, latent_dim)
             self.tgt_nonhomo_latent = MLPLatentHead(hidden_dim, latent_dim)
 
         # ====== Classifiers ======
-        # When use_nonhomo=False, force cls_on='homo' since there's no nonhomo
-        # branch to fuse with.
         effective_cls_on = "homo" if not self.use_nonhomo else cls_on
         self.classifier_homo = MLP(latent_dim, num_classes, cls_on=effective_cls_on)
 
@@ -253,8 +216,6 @@ class cross_GAE_VAE_Hierarchical(nn.Module):
         self.proto_conf_ratio = proto_conf_ratio
         self.num_classes = num_classes
 
-        # Per-class loss weights for the cls head. None -> uniform (default).
-        # Registered as a buffer so .to(device) carries it along.
         if class_weights is None:
             class_weights = torch.ones(num_classes)
         self.register_buffer("class_weights", class_weights.float())
@@ -290,7 +251,6 @@ class cross_GAE_VAE_Hierarchical(nn.Module):
         rnh = ref_data.nonhomo_x
         B, device = rh.size(0), rh.device
 
-        # Library sizes are computed from the *clean* counts (before noise).
         ls_h  = rh.sum(dim=1)
         ls_nh = rnh.sum(dim=1) if self.use_nonhomo else None
 
@@ -299,7 +259,6 @@ class cross_GAE_VAE_Hierarchical(nn.Module):
             rh_input = self._perturb_input(rh_input)
             rnh = self._perturb_input(rnh)
 
-        # FiLM modulation for the homo encoder/decoder (species_idx=0 -> ref)
         f_enc_g, f_enc_b = self._film_params(0, B, device, "enc")
         f_dec_g, f_dec_b = self._film_params(0, B, device, "dec")
 
@@ -346,7 +305,6 @@ class cross_GAE_VAE_Hierarchical(nn.Module):
             th_input = self._perturb_input(th_input)
             tnh = self._perturb_input(tnh)
 
-        # FiLM modulation for the homo encoder/decoder (species_idx=1 -> tgt)
         f_enc_g, f_enc_b = self._film_params(1, B, device, "enc")
         f_dec_g, f_dec_b = self._film_params(1, B, device, "dec")
 
@@ -380,9 +338,6 @@ class cross_GAE_VAE_Hierarchical(nn.Module):
         }
 
     def classify(self, homo_mean: torch.Tensor, nonhomo_mean: torch.Tensor) -> torch.Tensor:
-        # MLP itself dispatches on its own cls_on. When use_nonhomo=False or
-        # cls_on='homo' the MLP ignores the second arg, so passing nonhomo_mean
-        # (or any tensor) is safe.
         return self.classifier_homo(homo_mean, nonhomo_mean)
 
     def forward(self, ref_data=None, target_data=None) -> Dict:
@@ -468,9 +423,6 @@ class cross_GAE_VAE_Hierarchical(nn.Module):
         loss_cls = F.cross_entropy(ref_logits, ref_y, weight=self.class_weights)
 
         # 4. Hierarchical Alignment Loss
-        # use_nonhomo=False: skip intra/bridge entirely (no nonhomo branch to
-        # align with). Cross-species alignment then comes solely from the
-        # prototype contrastive loss below.
         if self.use_nonhomo:
             align_result = self.hierarchical_align(
                 ref_homo=latent_dict["ref_homo_mean"],

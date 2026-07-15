@@ -292,7 +292,6 @@ def plot_confusion_matrices(embeddings: dict, save_dir: str, stage_name: str,
     """
     Two confusion-matrix variants written to <save_dir>/<stage>_*.png:
       - cls head (model's end-to-end predictions, from ref_pred / tgt_pred)
-      - LogReg fit on ref_homo_mean (matches scGen-style benchmarking)
     """
     os.makedirs(save_dir, exist_ok=True)
 
@@ -324,28 +323,11 @@ def plot_confusion_matrices(embeddings: dict, save_dir: str, stage_name: str,
              save_path=os.path.join(save_dir, f"{stage_name}_cm_cls_tgt.png"),
              label_ids=label_ids, id2name=id2name, normalize=True)
 
-    # --- 2) LogReg on homo_mean ---
-    try:
-        X_ref = np.asarray(embeddings["ref_homo_mean"])
-        X_tgt = np.asarray(embeddings["tgt_homo_mean"])
-        clf = LogisticRegression(max_iter=1000, n_jobs=-1).fit(X_ref, y_ref)
-        p_tgt_lr = clf.predict(X_tgt)
-        acc_t = accuracy_score(y_tgt, p_tgt_lr)
-        bal_t = balanced_accuracy_score(y_tgt, p_tgt_lr)
-        _plot_cm(y_tgt, p_tgt_lr,
-                 title=f"{stage_name}: LogReg tgt  acc={acc_t:.3f}  bal={bal_t:.3f}",
-                 save_path=os.path.join(save_dir, f"{stage_name}_cm_logreg_tgt.png"),
-                 label_ids=label_ids, id2name=id2name, normalize=True)
-    except Exception as e:
-        print(f"[plot_confusion_matrices] LogReg variant skipped: {e}")
-
 
 def plot_stage_results(
     stage_name: str,
     embeddings: dict,
     losses: dict,
-    metrics: dict,
-    scib_metrics: dict,
     save_dir: str,
     condition: bool,
     inv_ref: dict = None,
