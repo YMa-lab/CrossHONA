@@ -1,0 +1,23 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 4014167
+##  Job Name : fig2_panelB_scib_table
+##  Nodelist : gpu3004
+##      CPUs : 2
+##  Mem/Node : 61440 MB
+## Directory : /oscar/data/yma16/Project/Cross_species/STAI-X_code/plot_scripts/Figure2/sbatch
+##   Job Started : Wed Jul 15 16:49:17 EDT 2026
+###############################################################################
+ kbet_per_label skip-condition fix applied
+source (17604, 135), embeddings: ['scVI', 'scGen', 'NicheFormer', 'CAMEX', 'CrossHONA_homo', 'CrossHONA_nonhomo', 'CrossHONA_combined']
+[34mINFO    [0m [1;36m0[0m clusters consist of a single batch or are too small. Skip.           
+[34mINFO    [0m [1;36m0[0m clusters consist of a single batch or are too small. Skip.           
+[34mINFO    [0m [1;36m0[0m clusters consist of a single batch or are too small. Skip.           
+[34mINFO    [0m [1;36m0[0m clusters consist of a single batch or are too small. Skip.           
+[34mINFO    [0m [1;36m0[0m clusters consist of a single batch or are too small. Skip.           
+[34mINFO    [0m [1;36m0[0m clusters consist of a single batch or are too small. Skip.           
+[34mINFO    [0m [1;36m0[0m clusters consist of a single batch or are too small. Skip.           
+ saved scib_table.png
+ saved scib_table.pdf
+ saved scib_table_raw.png
+ saved scib_table_raw.pdf
+--- 1421.5115230083466 seconds ---

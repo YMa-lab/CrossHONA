@@ -1,0 +1,146 @@
+/oscar/home/yzhu194/stellar_py/lib/python3.11/site-packages/scanpy/_utils/__init__.py:33: FutureWarning: `__version__` is deprecated, use `importlib.metadata.version('anndata')` instead.
+  from anndata import __version__ as anndata_version
+/oscar/home/yzhu194/stellar_py/lib/python3.11/site-packages/scanpy/__init__.py:24: FutureWarning: `__version__` is deprecated, use `importlib.metadata.version('anndata')` instead.
+  if Version(anndata.__version__) >= Version("0.11.0rc2"):
+/oscar/home/yzhu194/stellar_py/lib/python3.11/site-packages/scanpy/readwrite.py:16: FutureWarning: `__version__` is deprecated, use `importlib.metadata.version('anndata')` instead.
+  if Version(anndata.__version__) >= Version("0.11.0rc2"):
+/oscar/home/yzhu194/stellar_py/lib/python3.11/site-packages/louvain/__init__.py:54: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import get_distribution, DistributionNotFound
+2026-07-15 16:50:06.640594: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Computing neighbors:   0%|          | 0/7 [00:00<?, ?it/s]Computing neighbors:  14%|█▍        | 1/7 [00:19<01:56, 19.49s/it]Computing neighbors:  29%|██▊       | 2/7 [00:26<00:59, 11.89s/it]Computing neighbors:  43%|████▎     | 3/7 [00:34<00:41, 10.34s/it]Computing neighbors:  57%|█████▋    | 4/7 [00:40<00:25,  8.64s/it]Computing neighbors:  71%|███████▏  | 5/7 [00:45<00:14,  7.39s/it]Computing neighbors:  86%|████████▌ | 6/7 [00:51<00:06,  6.79s/it]Computing neighbors: 100%|██████████| 7/7 [00:57<00:00,  6.55s/it]Computing neighbors: 100%|██████████| 7/7 [00:57<00:00,  8.21s/it]
+Embeddings:   0%|[32m          [0m| 0/7 [00:00<?, ?it/s]
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s][A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s, Bio conservation: isolated_labels][AWARNING:jax._src.xla_bridge:An NVIDIA GPU may be present on this machine, but a CUDA-enabled jaxlib is not installed. Falling back to cpu.
+
+Metrics:  10%|[34m█         [0m| 1/10 [00:03<00:28,  3.20s/it, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [00:03<00:28,  3.20s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [00:04<00:17,  2.24s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [00:04<00:17,  2.24s/it, Bio conservation: silhouette_label]             [A
+Metrics:  30%|[34m███       [0m| 3/10 [00:06<00:13,  1.97s/it, Bio conservation: silhouette_label][A
+Metrics:  30%|[34m███       [0m| 3/10 [00:06<00:13,  1.97s/it, Bio conservation: clisi_knn]       [A
+Metrics:  40%|[34m████      [0m| 4/10 [00:07<00:08,  1.47s/it, Bio conservation: clisi_knn][A
+Metrics:  40%|[34m████      [0m| 4/10 [00:07<00:08,  1.47s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [00:10<00:10,  2.19s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [00:10<00:10,  2.19s/it, Batch correction: ilisi_knn]       [A
+Metrics:  60%|[34m██████    [0m| 6/10 [00:10<00:06,  1.52s/it, Batch correction: ilisi_knn][A
+Metrics:  60%|[34m██████    [0m| 6/10 [00:10<00:06,  1.52s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [00:25<00:17,  5.93s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [00:25<00:17,  5.93s/it, Batch correction: graph_connectivity][A
+Metrics:  80%|[34m████████  [0m| 8/10 [00:25<00:11,  5.93s/it, Batch correction: pcr_comparison]    [A
+Metrics:  90%|[34m█████████ [0m| 9/10 [00:26<00:03,  3.23s/it, Batch correction: pcr_comparison][AEmbeddings:  14%|[32m█▍        [0m| 1/7 [00:26<02:38, 26.49s/it]
+                                                                                         [A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s][A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [00:44<06:38, 44.27s/it, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [00:44<06:38, 44.27s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [00:47<02:42, 20.32s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [00:47<02:42, 20.32s/it, Bio conservation: silhouette_label]             [A
+Metrics:  30%|[34m███       [0m| 3/10 [01:32<03:39, 31.29s/it, Bio conservation: silhouette_label][A
+Metrics:  30%|[34m███       [0m| 3/10 [01:32<03:39, 31.29s/it, Bio conservation: clisi_knn]       [A
+Metrics:  40%|[34m████      [0m| 4/10 [01:32<01:54, 19.03s/it, Bio conservation: clisi_knn][A
+Metrics:  40%|[34m████      [0m| 4/10 [01:32<01:54, 19.03s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [01:44<01:23, 16.65s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [01:44<01:23, 16.65s/it, Batch correction: ilisi_knn]       [A
+Metrics:  60%|[34m██████    [0m| 6/10 [01:45<00:44, 11.06s/it, Batch correction: ilisi_knn][A
+Metrics:  60%|[34m██████    [0m| 6/10 [01:45<00:44, 11.06s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [01:57<00:34, 11.44s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [01:57<00:34, 11.44s/it, Batch correction: graph_connectivity][A
+Metrics:  80%|[34m████████  [0m| 8/10 [01:57<00:22, 11.44s/it, Batch correction: pcr_comparison]    [A
+Metrics:  90%|[34m█████████ [0m| 9/10 [01:57<00:05,  5.99s/it, Batch correction: pcr_comparison][AEmbeddings:  29%|[32m██▊       [0m| 2/7 [02:24<06:40, 80.07s/it]
+                                                                                         [A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s][A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [03:32<31:56, 212.92s/it, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [03:32<31:56, 212.92s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [04:04<14:11, 106.38s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [04:04<14:11, 106.38s/it, Bio conservation: silhouette_label]             [A
+Metrics:  30%|[34m███       [0m| 3/10 [06:57<15:57, 136.78s/it, Bio conservation: silhouette_label][A
+Metrics:  30%|[34m███       [0m| 3/10 [06:57<15:57, 136.78s/it, Bio conservation: clisi_knn]       [A
+Metrics:  40%|[34m████      [0m| 4/10 [06:57<08:17, 82.88s/it, Bio conservation: clisi_knn] [A
+Metrics:  40%|[34m████      [0m| 4/10 [06:57<08:17, 82.88s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [07:37<05:35, 67.15s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [07:37<05:35, 67.15s/it, Batch correction: ilisi_knn]       [A
+Metrics:  60%|[34m██████    [0m| 6/10 [07:37<02:57, 44.37s/it, Batch correction: ilisi_knn][A
+Metrics:  60%|[34m██████    [0m| 6/10 [07:37<02:57, 44.37s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [07:47<01:39, 33.18s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [07:47<01:39, 33.18s/it, Batch correction: graph_connectivity][A
+Metrics:  80%|[34m████████  [0m| 8/10 [07:47<01:06, 33.18s/it, Batch correction: pcr_comparison]    [A
+Metrics:  90%|[34m█████████ [0m| 9/10 [07:48<00:17, 17.33s/it, Batch correction: pcr_comparison][AEmbeddings:  43%|[32m████▎     [0m| 3/7 [10:12<17:09, 257.31s/it]
+                                                                                         [A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s][A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [00:50<07:31, 50.19s/it, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [00:50<07:31, 50.19s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [00:58<03:24, 25.54s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [00:58<03:24, 25.54s/it, Bio conservation: silhouette_label]             [A
+Metrics:  30%|[34m███       [0m| 3/10 [01:51<04:26, 38.11s/it, Bio conservation: silhouette_label][A
+Metrics:  30%|[34m███       [0m| 3/10 [01:51<04:26, 38.11s/it, Bio conservation: clisi_knn]       [A
+Metrics:  40%|[34m████      [0m| 4/10 [01:51<02:18, 23.15s/it, Bio conservation: clisi_knn][A
+Metrics:  40%|[34m████      [0m| 4/10 [01:51<02:18, 23.15s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [02:08<01:44, 20.81s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [02:08<01:44, 20.81s/it, Batch correction: ilisi_knn]       [A
+Metrics:  60%|[34m██████    [0m| 6/10 [02:08<00:55, 13.81s/it, Batch correction: ilisi_knn][A
+Metrics:  60%|[34m██████    [0m| 6/10 [02:08<00:55, 13.81s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [02:20<00:39, 13.27s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [02:20<00:39, 13.27s/it, Batch correction: graph_connectivity][A
+Metrics:  80%|[34m████████  [0m| 8/10 [02:20<00:26, 13.27s/it, Batch correction: pcr_comparison]    [A
+Metrics:  90%|[34m█████████ [0m| 9/10 [02:21<00:06,  6.94s/it, Batch correction: pcr_comparison][AEmbeddings:  57%|[32m█████▋    [0m| 4/7 [12:33<10:34, 211.45s/it]
+                                                                                         [A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s][A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [00:59<08:56, 59.59s/it, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [00:59<08:56, 59.59s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [01:08<03:56, 29.52s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [01:08<03:56, 29.52s/it, Bio conservation: silhouette_label]             [A
+Metrics:  30%|[34m███       [0m| 3/10 [02:06<05:00, 42.90s/it, Bio conservation: silhouette_label][A
+Metrics:  30%|[34m███       [0m| 3/10 [02:06<05:00, 42.90s/it, Bio conservation: clisi_knn]       [A
+Metrics:  40%|[34m████      [0m| 4/10 [02:07<02:36, 26.05s/it, Bio conservation: clisi_knn][A
+Metrics:  40%|[34m████      [0m| 4/10 [02:07<02:36, 26.05s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [02:23<01:53, 22.62s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [02:23<01:53, 22.62s/it, Batch correction: ilisi_knn]       [A
+Metrics:  60%|[34m██████    [0m| 6/10 [02:23<00:59, 14.98s/it, Batch correction: ilisi_knn][A
+Metrics:  60%|[34m██████    [0m| 6/10 [02:23<00:59, 14.98s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [02:34<00:41, 13.74s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [02:34<00:41, 13.74s/it, Batch correction: graph_connectivity][A
+Metrics:  80%|[34m████████  [0m| 8/10 [02:35<00:27, 13.74s/it, Batch correction: pcr_comparison]    [A
+Metrics:  90%|[34m█████████ [0m| 9/10 [02:35<00:07,  7.14s/it, Batch correction: pcr_comparison][AEmbeddings:  71%|[32m███████▏  [0m| 5/7 [15:08<06:22, 191.13s/it]
+                                                                                         [A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s][A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [00:58<08:48, 58.77s/it, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [00:58<08:48, 58.77s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [01:07<03:53, 29.17s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [01:07<03:53, 29.17s/it, Bio conservation: silhouette_label]             [A
+Metrics:  30%|[34m███       [0m| 3/10 [02:05<04:58, 42.64s/it, Bio conservation: silhouette_label][A
+Metrics:  30%|[34m███       [0m| 3/10 [02:05<04:58, 42.64s/it, Bio conservation: clisi_knn]       [A
+Metrics:  40%|[34m████      [0m| 4/10 [02:06<02:35, 25.89s/it, Bio conservation: clisi_knn][A
+Metrics:  40%|[34m████      [0m| 4/10 [02:06<02:35, 25.89s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [02:22<01:52, 22.55s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [02:22<01:52, 22.55s/it, Batch correction: ilisi_knn]       [A
+Metrics:  60%|[34m██████    [0m| 6/10 [02:22<00:59, 14.94s/it, Batch correction: ilisi_knn][A
+Metrics:  60%|[34m██████    [0m| 6/10 [02:22<00:59, 14.94s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [02:34<00:41, 13.93s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [02:34<00:41, 13.93s/it, Batch correction: graph_connectivity][A
+Metrics:  80%|[34m████████  [0m| 8/10 [02:34<00:27, 13.93s/it, Batch correction: pcr_comparison]    [A
+Metrics:  90%|[34m█████████ [0m| 9/10 [02:34<00:07,  7.26s/it, Batch correction: pcr_comparison][AEmbeddings:  86%|[32m████████▌ [0m| 6/7 [17:43<02:58, 178.84s/it]
+                                                                                         [A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s][A
+Metrics:   0%|[34m          [0m| 0/10 [00:00<?, ?it/s, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [01:55<17:17, 115.31s/it, Bio conservation: isolated_labels][A
+Metrics:  10%|[34m█         [0m| 1/10 [01:55<17:17, 115.31s/it, Bio conservation: nmi_ari_cluster_labels_kmeans][A
+Metrics:  20%|[34m██        [0m| 2/10 [02:11<07:37, 57.22s/it, Bio conservation: nmi_ari_cluster_labels_kmeans] [A
+Metrics:  20%|[34m██        [0m| 2/10 [02:11<07:37, 57.22s/it, Bio conservation: silhouette_label]             [A
+Metrics:  30%|[34m███       [0m| 3/10 [04:11<10:01, 85.90s/it, Bio conservation: silhouette_label][A
+Metrics:  30%|[34m███       [0m| 3/10 [04:11<10:01, 85.90s/it, Bio conservation: clisi_knn]       [A
+Metrics:  40%|[34m████      [0m| 4/10 [04:12<05:12, 52.05s/it, Bio conservation: clisi_knn][A
+Metrics:  40%|[34m████      [0m| 4/10 [04:12<05:12, 52.05s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [04:44<03:45, 45.04s/it, Batch correction: silhouette_batch][A
+Metrics:  50%|[34m█████     [0m| 5/10 [04:44<03:45, 45.04s/it, Batch correction: ilisi_knn]       [A
+Metrics:  60%|[34m██████    [0m| 6/10 [04:44<01:59, 29.78s/it, Batch correction: ilisi_knn][A
+Metrics:  60%|[34m██████    [0m| 6/10 [04:44<01:59, 29.78s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [04:55<01:10, 23.52s/it, Batch correction: kbet_per_label][A
+Metrics:  70%|[34m███████   [0m| 7/10 [04:55<01:10, 23.52s/it, Batch correction: graph_connectivity][A
+Metrics:  80%|[34m████████  [0m| 8/10 [04:55<00:47, 23.52s/it, Batch correction: pcr_comparison]    [A
+Metrics:  90%|[34m█████████ [0m| 9/10 [04:55<00:12, 12.27s/it, Batch correction: pcr_comparison][AEmbeddings: 100%|[32m██████████[0m| 7/7 [22:39<00:00, 217.12s/it]Embeddings: 100%|[32m██████████[0m| 7/7 [22:39<00:00, 194.21s/it]
+
+                                                                                         [A
