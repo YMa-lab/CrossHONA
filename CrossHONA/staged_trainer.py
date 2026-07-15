@@ -89,9 +89,6 @@ class StagedTrainer:
         args.num_classes       = int(torch.unique(dataset.ref_data.y).numel())
 
         # Per-class weighting for the cls loss — sqrt-inverse-frequency,
-        # w_c = 1/sqrt(count_c), normalised so the average weight is 1.
-        # Counters majority bias on rare cell types (e.g. lmgc/omural in MERFISH)
-        # without over-amplifying very rare classes the way 1/count would.
         ref_y_arr = dataset.ref_data.y.numpy()
         counts = np.bincount(ref_y_arr, minlength=args.num_classes).astype(float)
         counts[counts == 0] = 1.0

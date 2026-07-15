@@ -24,7 +24,7 @@ def _cap_to_top_n_within_subset(adata_subset, hvg_rank_series, n):
     return adata_subset[:, keep]
 
 def preprocess(args, adata_ref_homo, adata_ref_nonhomo, adata_target_homo, adata_target_nonhomo, valid_pairs,
-               save_data=True, target_sum=1e4):
+               save_data=True):
     print('Reference Homologous Gene:', adata_ref_homo.var.shape[0])
     print('Target Homologous Gene:', adata_target_homo.var.shape[0])
     print('Reference Non-Homologous Gene:', adata_ref_nonhomo.var.shape[0])
