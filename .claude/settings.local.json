@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(sips -g pixelHeight -g pixelWidth figures/CrossHONA.png)"
-    ]
-  }
-}
