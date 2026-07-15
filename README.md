@@ -45,6 +45,10 @@ Users should prepare their own datasets following the preprocessing procedure de
 - CUDA-enabled GPU
 - Conda or Miniforge
 
+## Source data and plotting scripts
+
+The source data required to reproduce the figures are available through the following [Google Drive link]([https://drive.google.com/drive/folders/1j4lI7GLqMaKO8P4jh1TSAqnZmFjc9a8q?usp=sharing]). The corresponding plotting scripts are provided in the [`plot_scripts/`](plot_scripts/) directory of this repository. Please download the source data and follow the instructions in the relevant scripts to reproduce each plot.
+
 ## License
 
 See [LICENSE](LICENSE).
