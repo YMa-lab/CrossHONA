@@ -25,7 +25,7 @@ CrossHONA is a deep learning framework for cross-species single-cell RNA-seq and
 ## Installation
 
 ```bash
-git clone https://github.com/anonreview412/CrossHONA.git
+git clone https://github.com/YMa-lab/CrossHONA.git
 cd CrossHONA
 
 conda env create -f environment.yml
