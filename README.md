@@ -54,10 +54,10 @@ The source data required to reproduce the figures are available through the foll
 See [LICENSE](LICENSE).
 
 ## Citation
-@article{wang2026crosshona,
-  author    = {Wang, Ruohan and Zhu, Yu and Gao, Zixiao and Ma, Ying},
-  title     = {CrossHONA: Cross-species HOmologous and Non-homologous gene-aware framework for transcriptomics integration and Annotation},
-  journal   = {OpenReview},
-  year      = {2026},
-  url       = {https://openreview.net/forum?id=hZqR47CiBp#discussion}
+@article{wang2026crosshona,<p>
+  author    = {Wang, Ruohan and Zhu, Yu and Gao, Zixiao and Ma, Ying},<p>
+  title     = {CrossHONA: Cross-species HOmologous and Non-homologous gene-aware framework for transcriptomics integration and Annotation},<p>
+  journal   = {OpenReview},<p>
+  year      = {2026},<p>
+  url       = {https://openreview.net/forum?id=hZqR47CiBp#discussion}<p>
 }
